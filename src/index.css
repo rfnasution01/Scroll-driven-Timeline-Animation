@@ -1,50 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap");
 @import "tailwindcss";
 
 :root {
-	font-family:
-		Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-		sans-serif;
-	color: #ffffff;
-	background: #020617;
+	font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	color: #f9fafb;
+	background: #111827;
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-* {
-	box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-	scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
 	margin: 0;
 	min-width: 320px;
 	min-height: 100vh;
+	background: #111827;
 }
 
-a {
-	color: inherit;
-	text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
 
 button,
-[role="button"] {
-	cursor: pointer;
-}
+[role="button"] { cursor: pointer; }
 
 .section-label {
-	@apply text-sm font-semibold uppercase tracking-[0.35em] text-cyan-300;
+	@apply text-sm font-semibold uppercase tracking-[0.35em] text-[#10B981];
 }
 
 .section-title {
-	@apply max-w-3xl text-4xl font-bold tracking-tight text-white md:text-5xl;
+	@apply max-w-3xl font-['Space_Grotesk'] text-4xl font-bold tracking-tight text-white md:text-5xl;
 }
 
-::selection {
-	background: #67e8f9;
-	color: #020617;
+.event-card.locked { opacity: 0.4 !important; }
+.event-card.completed { filter: saturate(0.55); }
+.event-card.active {
+	border-color: rgba(16, 185, 129, 0.55);
+	box-shadow: 0 0 32px rgba(16, 185, 129, 0.18);
+}
+
+.milestone-dot.locked { opacity: 0.4 !important; transform: scale(0.75); }
+.milestone-dot.completed { background: #10b981; }
+.milestone-dot.active {
+	transform: scale(1.2);
+	box-shadow: 0 0 32px rgba(16, 185, 129, 0.45);
+}
+
+.timeline-line-progress { filter: drop-shadow(0 0 14px rgba(16, 185, 129, 0.45)); }
+
+::selection { background: #10b981; color: #111827; }
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		scroll-behavior: auto !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+
+	.event-card,
+	.milestone-dot,
+	.timeline-line-progress {
+		transform: none !important;
+		opacity: 1 !important;
+		filter: none !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.event-card {
+		left: auto !important;
+		right: auto !important;
+		transform: none !important;
+	}
 }
